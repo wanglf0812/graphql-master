@@ -1,0 +1,236 @@
+extend type Query {
+	getTrade(id: ID!) : Trade
+	getTradeDtls(id: ID!) : TradeDtls
+}
+
+extend type Mutation {
+	insertProduct(input : ProductInput) : Product
+	updateProduct(id:ID!, input : ProductInput) : Product
+	#deleteProduct(id:ID!) : Product
+}
+
+
+type Trade{
+	id : ID!
+	clid : Long!
+	tradeNo : Long!
+	destinationName : String
+	destinationNameKana : String
+	destinationZip : String
+	destinationAddress : String
+	destinationTel : String
+	destinationDaytimeConadr : String
+	destinationStoreCd : String
+	destinationNameEdit : String
+	destinationAddressEdit : String
+	destinationTelEdit : String
+	destinationZipEdit : String
+	destinationDaytimeConadrEdit : String
+	destinationNameKanaEdit : String
+	destinationStoreCdEdit : String
+	userCmt : String
+	buyDate : String
+	delFlg : Int!
+	createDate : String
+	updateDate : String
+	createId : Long!
+	updateId : Long!
+	createPgmId : String
+	updatePgmId : String
+	version : Long!
+	shop : Shop
+	tradeDtls : [TradeDtls]
+	}
+
+type TradeDtls{
+	id : ID!
+	tradeDtlsNo : Long!
+	tradeId : Long!
+	productId : Long!
+	lotNo : Long!
+	productCd : String
+	productName : String
+	mgtProductName : String
+	taxKbn : String
+	choicesAltStockItemRowCd : String
+	choicesAltStockItemColCd : String
+	tradeProductMgtId : String
+	tradeDtlsOpt : String
+	buyOptCommissionTxt : String
+	buyOptCommissionTxtHist : String
+	buyOptCommission : Long!
+	buyOptCommissionEdit : Long!
+	giftPackingType : Long
+	giftPackingTypeEdit : Long
+	giftCommission : Long!
+	giftCommissionEdit : String!
+	giftMsg : String
+	giftMsgEdit : String
+	noshiType : String
+	noshiTypeEdit : String
+	noshiPresenterName1 : String
+	noshiPresenterName1Edit : String
+	noshiPresenterName2 : String
+	noshiPresenterName2Edit : String
+	noshiPresenterName3 : String
+	noshiPresenterName3Edit : String
+	tardeDtlsDscntBfrUptprc : Long!
+	tardeDtlsDscntAmt : Long!
+	tardeDtlsUntprc : Long!
+	tardeDtlsUntprcEdit : Long!
+	tardeDtlsQuantity : Long!
+	tardeDtlsQuantityEdit : Long!
+	tardeDtlsPtRate : Long!
+	tardeDtlsPt : Long!
+	tardeDtlsAmtSubtotal : Long!
+	commissionSubtotal : Long!
+	tmsaleProductFlg : Int!
+	tradeDtlsCancleFinFlg : Int!
+	tradeDtlsCancle_String : String
+	shoppingDayDispTxt : String
+	shoppingTimlmtDay : String
+	divTimlmtDay : String
+	digiconKtn : String
+	adultFlg : Int!
+	ageLimit : Int!
+	delFlg : Int!
+	createDate : String
+	updateDate : String
+	createId : Long!
+	updateId : Long!
+	createPgmId : String
+	updatePgmId : String
+	version : Long!
+	product : Product
+	}
+	
+type Product{
+	id : Long!
+	clid : Long!
+	lotNo : Long!
+	productCd : String
+	ctgryId : Long!
+	productName : String
+	productMgtId : String
+	mgtProductName : String
+	publicOpenStartDate : String
+	productModel : String
+	janCd : String
+	isbnCd : String
+	productSpecTitle : String
+	sellStsKbn : String
+	sellPrice : Long!
+	sellMethodKbn : String
+	sellInstockExpctDay : String
+	reserveRegstDay : String
+	taxKbn : String
+	comparisonPrice : Long!
+	doublePriceTxt : String
+	dlvfeeConfigKbn : String
+	dlvfee : Long!
+	buyLimitConfigKbn : String
+	maxBuyQuantity : Int
+	ptMagnification : Int
+	pwdLimitConfig : String
+	pwdLimitPageTitle : String
+	pwdLimitPageMsg : String
+	timeSaleLockFlg : Int!
+	timeSaleUnlockExpctDate : String
+	favoriteSu : Long!
+	arrivalReqSu : Long!
+	exhibitRegstMethodKbn : String
+	delFlg : Int
+	createDate : String
+	updateDate : String
+	createId : Long!
+	updateId : Long!
+	createPgmId : String
+	updatePgmId : String
+	version : Long!
+}
+
+type Shop{
+	id : Long!
+	shopName : String
+	apiKey : String
+	apiKeyEffTimlmt : String
+	apiKeyUsageAgreementVer : Int
+	apiKeyUsageAgreementDate : String
+	companyName : String
+	hojinkakuNameKbn : String
+	hojinkakuPosiKbn : String
+	rplsntKanjiFamilyName : String
+	rplsntKanjiName : String
+	rplsntKanaFamilyName : String
+	rplsntKanaName : String
+	rplsntAlphabetFamilyName : String
+	rplsntAlphabetName : String
+	storeName : String
+	chargeDeptZip : String
+	chargeDeptAddressCity : String
+	chargeDeptAddressBldg : String
+	chargeDeptName : String
+	ecRspsblKanjiFamilyName : String
+	ecRspsblKanjiName : String
+	ecRspsblKanaFamilyName : String
+	ecRspsblKanaName : String
+	charegEmailLocal : String
+	chargeEmailDomain : String
+	userContactEmailLocal : String
+	userContactEmailDomain : String
+	adviserEmailLocal : String
+	adviserEmailDomain : String
+	consumerContactTel : String
+	faxNo : String
+	hpAddr : String
+	currentUserRelationKey : Long
+	notes : String
+	delFlg : Int!
+	createDate : String
+	updateDate : String
+	createId : Long!
+	updateId : Long!
+	createPgmId : String
+	updatePgmId : String
+	version : Long!
+}
+
+input ProductInput{
+	clid : Long!
+	lotNo : Long!
+	productCd : String
+	ctgryId : Long!
+	productName : String
+	productMgtId : String
+	mgtProductName : String
+	publicOpenStartDate : String
+	productModel : String
+	janCd : String
+	isbnCd : String
+	productSpecTitle : String
+	sellStsKbn : String
+	sellPrice : Long!
+	sellMethodKbn : String
+	sellInstockExpctDay : String
+	reserveRegstDay : String
+	taxKbn : String
+	comparisonPrice : Long!
+	doublePriceTxt : String
+	dlvfeeConfigKbn : String
+	dlvfee : Long!
+	buyLimitConfigKbn : String
+	maxBuyQuantity : Int
+	ptMagnification : Int
+	pwdLimitConfig : String
+	pwdLimitPageTitle : String
+	pwdLimitPageMsg : String
+	timeSaleLockFlg : Int!
+	timeSaleUnlockExpctDate : String
+	favoriteSu : Long!
+	arrivalReqSu : Long!
+	exhibitRegstMethodKbn : String
+	createId : Long!
+	updateId : Long!
+	createPgmId : String
+	updatePgmId : String
+}

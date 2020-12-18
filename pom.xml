@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.2.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.graphql.demo</groupId>
+	<artifactId>graphql-demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>graphql-demo</name>
+	<description>Demo project for Graphql Java</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		 <grpc.version>1.35.0-SNAPSHOT</grpc.version><!-- CURRENT_GRPC_VERSION -->
+		  <protobuf.version>3.12.0</protobuf.version>
+    <protoc.version>3.12.0</protoc.version>
+    <!-- required for jdk9 -->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+	
+	
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+        <!-- <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency> -->
+		<dependency>
+		  <groupId>com.google.code.gson</groupId>
+		  <artifactId>gson</artifactId>
+		  <version>2.8.6</version>
+		</dependency>        
+		
+		<!-- graphql dependency start -->
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-java</artifactId>
+			<version>14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphiql-spring-boot-starter</artifactId>
+			<version>5.0.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.graphql-java</groupId>
+		    <artifactId>graphql-java-tools</artifactId>
+		    <version>5.2.4</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.graphql-java</groupId>
+		  <artifactId>graphql-java-extended-scalars</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		<!-- graphql dependency end -->
+		
+		<!-- grpc dependency start -->
+		<!-- grpc-spring-boot-starternの中に含めているので、不要 -->
+		<!-- <dependency>
+		  <groupId>io.grpc</groupId>
+		  <artifactId>grpc-netty-shaded</artifactId>
+		  <version>1.33.1</version>
+		</dependency>
+		<dependency>
+		  <groupId>io.grpc</groupId>
+		  <artifactId>grpc-protobuf</artifactId>
+		  <version>1.33.1</version>
+		</dependency>
+		<dependency>
+		  <groupId>io.grpc</groupId>
+		  <artifactId>grpc-stub</artifactId>
+		  <version>1.33.1</version>
+		</dependency> -->
+		<dependency> <!-- necessary for Java 9+ -->
+		  <groupId>org.apache.tomcat</groupId>
+		  <artifactId>annotations-api</artifactId>
+		  <version>6.0.53</version>
+		  <scope>provided</scope>
+		</dependency>
+		<dependency> <!-- necessary for Java 9+ -->
+		  <groupId>net.devh</groupId>
+		  <artifactId>grpc-spring-boot-starter</artifactId>
+		  <version>2.10.1.RELEASE</version>
+		</dependency>
+		<!-- grpc dependency end -->
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava -->
+<dependency>
+    <groupId>io.reactivex.rxjava2</groupId>
+    <artifactId>rxjava</artifactId>
+    </dependency>
+    
+
+
+   <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+   
+	</dependencies>
+
+	<build>
+	  <extensions>
+	    <extension>
+	      <groupId>kr.motd.maven</groupId>
+	      <artifactId>os-maven-plugin</artifactId>
+	      <version>1.6.2</version>
+	    </extension>
+	  </extensions>
+	  <plugins>
+	    <plugin>
+	      <groupId>org.xolstice.maven.plugins</groupId>
+	      <artifactId>protobuf-maven-plugin</artifactId>
+	      <version>0.6.1</version>
+	      <configuration>
+	        <protocArtifact>com.google.protobuf:protoc:3.12.0:exe:${os.detected.classifier}</protocArtifact>
+	        <pluginId>grpc-java</pluginId>
+	        <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.33.1:exe:${os.detected.classifier}</pluginArtifact>
+	      </configuration>
+	      <executions>
+	        <execution>
+	          <goals>
+	            <goal>compile</goal>
+	            <goal>compile-custom</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+	  </plugins>
+	</build>
+
+</project>

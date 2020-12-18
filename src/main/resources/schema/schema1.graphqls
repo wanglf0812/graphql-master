@@ -1,0 +1,34 @@
+extend type Query {
+	getBook(id: ID!) : Book
+	getBooKAndAuthor : [Name]
+	getType(id: ID!) : Type
+	getTypeWrapper(id: ID!) : Type
+	getTypeRest(id: ID!) : Type
+	
+}
+
+type Name{
+    name : String!
+	pageCount : Int!
+	authorName : String
+	}
+	
+type Type{
+	id : Long
+	typeVarchar : String
+	typeChar : String
+	typeText : String
+	typeInteger : Int
+	typeTinyint : Int
+	typeSmallint : Int
+	typeMediumint : Int
+	typeBigint : Long
+	typeFloat : Float
+	typeDouble : Float
+	typeDecimal : BigDecimal
+	typeDate : String
+	typeDatetime : String
+	typeTime : String
+	typeTimestamp : String
+	typeBlob : String
+}

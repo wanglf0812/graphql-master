@@ -1,0 +1,90 @@
+
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.proto.trade";
+option java_outer_classname = "TradeDetailProto";
+
+package trade;
+
+
+service TradeDetail {
+  
+  rpc GetTradeDetail(RequestId) returns (ReplyTradeDetail) {}
+  rpc GetTradeDetailByTradeIds(RequestTradeId) returns (ReplyTradeDetailList) {}
+}
+
+message RequestId {
+  string id = 1;
+}
+
+message RequestTradeId {
+  repeated int64 tradeId = 1;
+}
+message ReplyTradeDetailList {
+  repeated ReplyTradeDetail tradeDetailList = 1;
+}
+
+message ReplyTradeDetail {
+
+  	int64 id = 1;
+	int64 trade_dtls_no = 2;
+	int64 trade_id = 3;
+	int64 product_id = 4;
+	int64 lot_no = 5;
+	string product_cd = 6;
+	string product_name = 7;
+	string mgt_product_name = 8;
+	string tax_kbn = 9;
+	string choices_alt_stock_item_row_cd = 10;
+	string choices_alt_stock_item_col_cd = 11;
+	string trade_product_mgt_id = 12;
+	string trade_dtls_opt = 13;
+	string buy_opt_commission_txt = 14;
+	string buy_opt_commission_txt_hist = 15;
+	int64 buy_opt_commission =16;
+	int64 buy_opt_commission_edit =17;
+	string gift_packing_type = 18;
+	string gift_packing_type_edit = 19;
+	int64 gift_commission = 20;
+	int64 gift_commission_edit = 21;
+	string gift_msg = 22;	
+	string gift_msg_edit = 23;
+	string noshi_type = 24;
+	string noshi_type_edit = 25;
+	string noshi_presenter_name1 = 26;
+	string noshi_presenter_name1_edit = 27;
+	string noshi_presenter_name2 = 28;
+	string noshi_presenter_name2_edit = 29;
+	string noshi_presenter_name3 = 30;
+	string noshi_presenter_name3_edit = 31;
+	int64 tarde_dtls_dscnt_bfr = 32;
+	int64 tarde_dtls_dscnt_amt = 33;
+	int64 tarde_dtls_untprc = 34;
+	int64 tarde_dtls_untprc_edit = 35;
+	int64 tarde_dtls_quantity = 36;
+	int64 tarde_dtls_quantity_edit = 37;
+	int64 tarde_dtls_pt_rate = 38;
+	int64 tarde_dtls_pt = 39;
+	int64 tarde_dtls_amt_subtotal = 40;
+	int64 commission_subtotal = 41;
+	int32 tmsale_product_flg = 42;
+	int32 trade_dtls_cancle_fin_flg = 43;
+	string trade_dtls_cancle_date = 44;
+	string shopping_day_disp_txt = 45;
+	string shopping_timlmt_day = 46;
+	string div_timlmt_day = 47;
+	string digicon_ktn = 48;
+	int32 adult_flg = 49;
+	int32 age_limit = 50;
+	int32 del_flg = 51;
+	string create_date = 52;
+	string update_date = 53;
+	int64 create_id = 54;
+	int64 update_id = 55;
+	string create_pgm_id = 56;
+	string update_pgm_id = 57;
+	int64 version = 58;
+  
+}

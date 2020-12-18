@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graphql.demo.graphqldemo.dao.AuthorDao">
+
+	<resultMap id="authorResultMap"
+		type="com.graphql.demo.graphqldemo.dto.Author">
+		<id property="id" column="id" />
+		<result property="age" column="age" />
+		<result property="sex" column="sex" />
+		<result property="authorName" column="author_name" />
+		<result property="delFlg" column="del_flg" />
+		<!-- <collection property="books" ofType="com.graphql.demo.graphqldemo.dto.Book">
+			<id property="id" column="book_id" />
+			<result property="name" column="name" />
+			<result property="pageCount" column="page_count" />
+			<result property="authorId" column="author_id" />
+			<result property="delFlg" column="del_flg" />
+		</collection> -->
+	</resultMap>
+	
+	<resultMap id="nameResultMap"
+		type="com.graphql.demo.graphqldemo.dto.Name">
+		<result property="name" column="name" />
+		<result property="pageCount" column="page_count" />
+		<result property="authorName" column="author_name" />		
+	</resultMap>
+
+	<select id="getAuthorById" parameterType="java.lang.String"
+		resultType="com.graphql.demo.graphqldemo.dto.Author"
+		resultMap="authorResultMap">
+
+		select
+		*
+		from author
+		where del_flg = 0 and id = #{id}
+
+	</select>
+
+	<select id="getAuthorsByIds" parameterType="java.util.List"
+		resultType="com.graphql.demo.graphqldemo.dto.Author"
+		resultMap="authorResultMap">
+
+		select
+		*
+		from author
+		where del_flg = 0 and id in
+		
+		<foreach item="item" collection="list" separator="," open="(" close=")" index="">
+			#{item}
+		</foreach>
+
+	</select>
+
+	<select id="getAllAuthors" resultType="java.util.List"
+		resultMap="authorResultMap">
+
+		<!-- select
+		A.*,B.id as book_id,B.name,B.page_count,B.author_id,B.del_flg
+		from author A left join book B on A.id = B.author_id and B.del_flg = 0
+		where A.del_flg = 0 -->
+		
+		select *
+		from author
+		where del_flg = 0;
+
+	</select>
+	
+	
+		<select id="getBooKAndAuthor" resultType="java.util.List"
+		resultMap="nameResultMap">
+
+		<!-- select
+		A.*,B.id as book_id,B.name,B.page_count,B.author_id,B.del_flg
+		from author A left join book B on A.id = B.author_id and B.del_flg = 0
+		where A.del_flg = 0 -->
+		
+		select a.name , a.page_count , b.author_name
+		from graphql.book a 
+		join graphql.author b 
+		on a.author_id = b.id;
+
+	</select>
+
+
+	<insert id="addAuthor" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.graphql.demo.graphqldemo.dto.Author">
+		insert into author(age, sex, author_name, del_flg)
+		values (#{age}, #{sex}, #{authorName}, 0)
+	</insert>
+
+	<update id="updateAuthor" useGeneratedKeys="true"
+		keyProperty="id"
+		parameterType="com.graphql.demo.graphqldemo.dto.Author">
+		update author set age = #{age}, sex = #{sex},
+		author_name = #{authorName} where id =
+		#{id}
+	</update>
+	
+	<update id="deleteAuthor" useGeneratedKeys="true"
+		keyProperty="id"
+		parameterType="java.lang.String">
+		update author set del_flg = 1 where id = #{id};
+		update book set del_flg = 1 where author_id = #{id};
+	</update>
+
+</mapper>

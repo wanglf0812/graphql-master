@@ -1,0 +1,129 @@
+#Get All Books
+{
+	getBooks{
+    id
+    name
+    pageCount
+    author{
+      authorName
+    }
+  }
+}
+
+#Get Book By Id
+{
+	getBook(id:"3") {
+    id
+    name
+    pageCount
+    author {
+      age
+      sex
+      authorName
+    }
+  }
+}
+
+#Get All Authors
+{
+	getAuthors{
+    id
+    age
+    sex
+    authorName
+    books{
+      name
+      pageCount
+    }
+  }
+}
+
+#Get Author By Id
+{
+	getAuthor(id:"2"){
+    id
+    age
+    sex
+    authorName
+    books{
+      name
+      pageCount
+    }
+  }
+}
+
+#Get All Books Of Author By Author Id
+{
+	booksOfAuthorById(id:1){
+    id
+    name
+    pageCount
+  }
+}
+
+#Add Book
+mutation addBook($bookInput : BookInput) {
+  addBook(input : $bookInput) {
+    id
+    name
+  }
+}
+
+{
+  "bookInput": {
+    "bookName": "testBook",
+    "pageCount": 123,
+    "authorId": 2
+  }
+}
+
+#Update Book
+mutation updateBook($id:ID!,$bookInput : BookInput!) {
+  updateBook(id:$id,input : $bookInput) {
+    id
+    name
+  }
+}
+
+{
+  "id": 23,
+  "bookInput": {
+    "bookName": "testBookUpdated"
+  }
+}
+
+#Add Author
+mutation addAuthor($input : AuthorInput) {
+  addAuthor(input : $input) {
+    age
+    sex
+    authorName
+  }
+}
+
+{
+  "input": {
+    "age":  21,
+    "sex": "wowma",
+    "authorName": "Kobe"
+  }
+}
+
+#Delete Author(The Books of The Author are Deleted)
+mutation deleteAuthor {
+  deleteAuthor(id:1) {
+    id
+    age
+    sex
+    authorName
+  }
+}
+
+#Delete Book
+mutation deleteBook {
+  deleteBook(id:23) {
+    id
+    name
+    pageCount
+  }
+}
